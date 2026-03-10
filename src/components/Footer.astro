@@ -1,0 +1,20 @@
+---
+import { useTranslations, type Lang } from '../i18n/ui';
+interface Props { lang?: string; }
+const { lang = 'fr' } = Astro.props;
+const t = useTranslations(lang as Lang);
+const year = new Date().getFullYear();
+---
+
+<footer class="border-t border-gray-200 bg-gray-50 py-10 mt-16">
+  <div class="mx-auto max-w-5xl px-4 sm:px-6 flex flex-col sm:flex-row items-center justify-between gap-4">
+    <p class="text-sm text-gray-500">
+      © {year} visibilite-locale.online — {t('footer.rights')}
+    </p>
+    <div class="flex gap-4 text-sm text-gray-500">
+      <a href="/" class="hover:text-gray-900">FR</a>
+      <a href="/en/" class="hover:text-gray-900">EN</a>
+      <a href="/es/" class="hover:text-gray-900">ES</a>
+    </div>
+  </div>
+</footer>

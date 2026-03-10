@@ -1,0 +1,36 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import { useTranslations } from '../../i18n/ui';
+
+const t = useTranslations('en');
+---
+
+<Layout
+  title="Local SEO: guides and tips for your local visibility | visibilite-locale.online"
+  description="Practical guides, tips and resources on local SEO. Improve your visibility on Google Maps and local search."
+  lang="en"
+>
+  <section class="border-b border-gray-200 bg-gradient-to-b from-blue-50 to-white py-20">
+    <div class="mx-auto max-w-3xl px-4 text-center">
+      <p class="mb-4 inline-block rounded-full bg-blue-100 px-4 py-1.5 text-sm font-semibold text-blue-700">
+        The local SEO guide
+      </p>
+      <h1 class="mb-5 text-4xl font-bold text-gray-900 sm:text-5xl leading-tight">
+        {t('hero.title')}
+      </h1>
+      <p class="mb-8 text-lg text-gray-600 leading-relaxed max-w-xl mx-auto">
+        {t('hero.subtitle')}
+      </p>
+      <a href="/en/guide-seo-local" class="inline-flex items-center rounded-lg bg-blue-600 px-6 py-3 text-sm font-semibold text-white shadow-sm transition hover:bg-blue-700">
+        {t('hero.cta')}
+      </a>
+    </div>
+  </section>
+
+  <section class="py-16">
+    <div class="mx-auto max-w-5xl px-4 sm:px-6">
+      <h2 class="mb-10 text-2xl font-bold text-gray-900">{t('latest.title')}</h2>
+      <p class="text-gray-500">Articles coming soon.</p>
+    </div>
+  </section>
+</Layout>

@@ -1,0 +1,154 @@
+---
+title: "Schema markup LocalBusiness: guía de implementación"
+description: "El schema LocalBusiness ayuda a Google a entender tu negocio y puede activar rich snippets. Aquí te explicamos cómo implementarlo correctamente en tu sitio web."
+date: "2026-03-10"
+lang: "es"
+---
+
+## Schema markup LocalBusiness: guía de implementación
+
+El schema markup es uno de los recursos SEO más técnicos, pero también uno de los más accesibles una vez que comprendes su lógica. Para los negocios locales, el schema `LocalBusiness` permite comunicarle a Google — de forma estructurada e inequívoca — la información esencial de tu empresa: nombre, dirección, teléfono, horarios, sector de actividad y área de servicio.
+
+## ¿Qué es el schema markup?
+
+El schema markup (o datos estructurados) es un código que añades a tu sitio web para ayudar a los motores de búsqueda a entender el contenido de tus páginas. Utiliza un vocabulario estandarizado definido en Schema.org y puede integrarse en tu HTML en formato JSON-LD (recomendado), Microdata o RDFa.
+
+Google puede usar estos datos para mostrar **rich snippets** (resultados enriquecidos) en sus páginas de resultados, pero incluso sin ninguna visualización visible, los datos estructurados mejoran la comprensión de tu contenido por parte del algoritmo.
+
+## Por qué el schema LocalBusiness es esencial para el SEO local
+
+El schema `LocalBusiness` es especialmente importante porque:
+
+- Refuerza la coherencia de tu información NAP (Nombre, Dirección, Teléfono) en la web
+- Ayuda a Google a asociar tu sitio web con tu ficha de Google Business Profile
+- Puede activar la visualización de tus horarios o tu valoración directamente en los resultados
+- Refuerza la relevancia de tus páginas para búsquedas locales
+
+## Estructura básica del schema LocalBusiness
+
+Aquí tienes un ejemplo de JSON-LD para colocar dentro de la etiqueta `<head>` de tu página (o en el `<body>`):
+
+```json
+{
+  "@context": "https://schema.org",
+  "@type": "LocalBusiness",
+  "name": "Fontanería García",
+  "image": "https://www.fontaneriagarcia.es/images/logo.jpg",
+  "url": "https://www.fontaneriagarcia.es",
+  "telephone": "+34 91 000 00 00",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "Calle de los Artesanos, 12",
+    "addressLocality": "Madrid",
+    "postalCode": "28001",
+    "addressCountry": "ES"
+  },
+  "geo": {
+    "@type": "GeoCoordinates",
+    "latitude": 40.4168,
+    "longitude": -3.7038
+  },
+  "openingHoursSpecification": [
+    {
+      "@type": "OpeningHoursSpecification",
+      "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+      "opens": "08:00",
+      "closes": "19:00"
+    },
+    {
+      "@type": "OpeningHoursSpecification",
+      "dayOfWeek": "Saturday",
+      "opens": "09:00",
+      "closes": "14:00"
+    }
+  ],
+  "priceRange": "€€",
+  "description": "Fontanero en Madrid con respuesta rápida para todo tipo de trabajos de fontanería y urgencias.",
+  "areaServed": {
+    "@type": "City",
+    "name": "Madrid"
+  }
+}
+```
+
+## Tipos especializados que debes usar
+
+`LocalBusiness` es un tipo genérico. Para mayor precisión, utiliza un subtipo que corresponda a tu actividad:
+
+| Sector | Tipo Schema |
+|---|---|
+| Restaurante | `Restaurant` |
+| Médico | `Physician` |
+| Abogado | `LegalService` |
+| Hotel | `Hotel` |
+| Peluquería | `HairSalon` |
+| Electricista / Fontanero | `HomeAndConstructionBusiness` |
+| Dentista | `Dentist` |
+| Farmacia | `Pharmacy` |
+
+Simplemente reemplaza `"@type": "LocalBusiness"` por el tipo correspondiente.
+
+## Propiedades avanzadas útiles
+
+### areaServed
+
+Si atiendes varias ciudades, puedes listar varias zonas:
+
+```json
+"areaServed": [
+  { "@type": "City", "name": "Madrid" },
+  { "@type": "City", "name": "Alcalá de Henares" },
+  { "@type": "AdministrativeArea", "name": "Comunidad de Madrid" }
+]
+```
+
+### aggregateRating
+
+Si tienes reseñas, puedes incluirlas (asegurándote de que los datos correspondan a tus reseñas reales):
+
+```json
+"aggregateRating": {
+  "@type": "AggregateRating",
+  "ratingValue": "4.8",
+  "reviewCount": "124"
+}
+```
+
+### sameAs
+
+Enlaza tus perfiles sociales y directorios para reforzar la coherencia:
+
+```json
+"sameAs": [
+  "https://www.facebook.com/fontaneriagarcia",
+  "https://www.paginasamarillas.es/fontaneria-garcia-madrid"
+]
+```
+
+## Dónde colocar el código
+
+El JSON-LD se coloca idealmente en la etiqueta `<head>` de tus páginas, pero Google también lo acepta en el `<body>`. Añádelo en:
+
+- Tu página de inicio
+- Cada página de servicio
+- Cada página local ("servicio + ciudad")
+
+## Cómo verificar tu implementación
+
+Utiliza las herramientas oficiales de Google:
+
+1. **Rich Results Test**: [search.google.com/test/rich-results](https://search.google.com/test/rich-results) — para verificar que tu schema es válido y elegible para rich snippets.
+2. **Schema Markup Validator**: [validator.schema.org](https://validator.schema.org) — para una validación técnica completa.
+
+Si aparecen errores, Google Search Console también los señala en la sección "Mejoras".
+
+## Errores habituales que debes evitar
+
+- **Datos falsos o incorrectos**: nunca inventes una valoración o un número de reseñas. Google puede penalizar los datos estructurados engañosos.
+- **Incoherencia en el NAP**: asegúrate de que el nombre, la dirección y el teléfono en tu schema coincidan exactamente con los de tu ficha de Google Business Profile.
+- **Omitir los horarios**: es una de las propiedades más útiles tanto para los usuarios como para los motores de búsqueda.
+- **Poner el schema solo en la página de inicio**: replícalo en todas tus páginas locales importantes.
+
+## Conclusión
+
+El schema LocalBusiness es una implementación relativamente sencilla que añade una señal SEO adicional a tu presencia local. No sustituye a un buen contenido ni a una ficha de GBP bien optimizada, pero complementa y refuerza tu estrategia de SEO local en su conjunto. Dedica 30 minutos a implementarlo hoy — es una inversión a largo plazo sin coste recurrente.

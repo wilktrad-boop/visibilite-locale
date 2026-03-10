@@ -1,0 +1,155 @@
+---
+title: "LocalBusiness Schema Markup: Implementation Guide"
+description: "LocalBusiness schema helps Google understand your business and can trigger rich snippets. Here's how to implement it correctly on your website."
+date: "2026-03-10"
+lang: "en"
+---
+
+## LocalBusiness Schema Markup: Implementation Guide
+
+Schema markup is one of the more technical SEO levers, but also one of the most accessible once you understand its logic. For local businesses, the `LocalBusiness` schema lets you communicate to Google — in a structured and unambiguous way — your essential business details: name, address, phone number, hours, industry, and service area.
+
+## What Is Schema Markup?
+
+Schema markup (also called structured data) is code you add to your website to help search engines understand your page content. It uses a standardized vocabulary defined at Schema.org, and can be embedded in your HTML as JSON-LD (recommended), Microdata, or RDFa.
+
+Google can use this data to display **rich snippets** (enhanced results) in its search pages, but even without any visible display, structured data improves how the algorithm understands your content.
+
+## Why LocalBusiness Schema Is Essential for Local SEO
+
+The `LocalBusiness` schema is particularly important because it:
+
+- Reinforces the consistency of your NAP (Name, Address, Phone) information across the web
+- Helps Google associate your website with your Google Business Profile listing
+- Can trigger the display of your hours or rating directly in search results
+- Strengthens your pages' relevance for local queries
+
+## Basic LocalBusiness Schema Structure
+
+Here is a JSON-LD example to place inside the `<head>` tag of your page (or in the `<body>`):
+
+```json
+{
+  "@context": "https://schema.org",
+  "@type": "LocalBusiness",
+  "name": "Martin Plumbing",
+  "image": "https://www.martinplumbing.com/images/logo.jpg",
+  "url": "https://www.martinplumbing.com",
+  "telephone": "+1-303-555-0100",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "1234 Craftsman Ave",
+    "addressLocality": "Denver",
+    "addressRegion": "CO",
+    "postalCode": "80203",
+    "addressCountry": "US"
+  },
+  "geo": {
+    "@type": "GeoCoordinates",
+    "latitude": 39.7392,
+    "longitude": -104.9903
+  },
+  "openingHoursSpecification": [
+    {
+      "@type": "OpeningHoursSpecification",
+      "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+      "opens": "08:00",
+      "closes": "18:00"
+    },
+    {
+      "@type": "OpeningHoursSpecification",
+      "dayOfWeek": "Saturday",
+      "opens": "09:00",
+      "closes": "16:00"
+    }
+  ],
+  "priceRange": "$$",
+  "description": "Licensed plumber in Denver offering fast response for all plumbing work and emergency repairs.",
+  "areaServed": {
+    "@type": "City",
+    "name": "Denver"
+  }
+}
+```
+
+## Specialized Types to Use
+
+`LocalBusiness` is a generic type. For greater precision, use a subtype that matches your industry:
+
+| Sector | Schema Type |
+|---|---|
+| Restaurant | `Restaurant` |
+| Doctor | `Physician` |
+| Lawyer | `LegalService` |
+| Hotel | `Hotel` |
+| Hair Salon | `HairSalon` |
+| Electrician / Plumber | `HomeAndConstructionBusiness` |
+| Dentist | `Dentist` |
+| Pharmacy | `Pharmacy` |
+
+Simply replace `"@type": "LocalBusiness"` with the appropriate type.
+
+## Useful Advanced Properties
+
+### areaServed
+
+If you serve multiple cities, you can list several areas:
+
+```json
+"areaServed": [
+  { "@type": "City", "name": "Denver" },
+  { "@type": "City", "name": "Aurora" },
+  { "@type": "AdministrativeArea", "name": "Jefferson County" }
+]
+```
+
+### aggregateRating
+
+If you have reviews, you can include them (ensuring the data matches your actual reviews):
+
+```json
+"aggregateRating": {
+  "@type": "AggregateRating",
+  "ratingValue": "4.8",
+  "reviewCount": "124"
+}
+```
+
+### sameAs
+
+Link your social profiles and directory listings to reinforce consistency:
+
+```json
+"sameAs": [
+  "https://www.facebook.com/martinplumbing",
+  "https://www.yelp.com/biz/martin-plumbing-denver"
+]
+```
+
+## Where to Place the Code
+
+JSON-LD is ideally placed in the `<head>` tag of your pages, but Google also accepts it in the `<body>`. Add it to:
+
+- Your homepage
+- Each service page
+- Each local page ("service + city")
+
+## How to Test Your Implementation
+
+Use Google's official tools:
+
+1. **Rich Results Test**: [search.google.com/test/rich-results](https://search.google.com/test/rich-results) — to verify that your schema is valid and eligible for rich snippets.
+2. **Schema Markup Validator**: [validator.schema.org](https://validator.schema.org) — for comprehensive technical validation.
+
+If errors appear, Google Search Console also flags them in the "Enhancements" section.
+
+## Common Mistakes to Avoid
+
+- **Fake or incorrect data**: never invent a rating or a review count. Google can penalize misleading structured data.
+- **NAP inconsistency**: make sure the name, address, and phone number in your schema exactly match those on your Google Business Profile.
+- **Omitting opening hours**: this is one of the most useful properties for both users and search engines.
+- **Only putting the schema on the homepage**: replicate it across all your important local pages.
+
+## Conclusion
+
+LocalBusiness schema is a relatively simple implementation that adds an extra SEO signal to your local presence. It does not replace good content or a well-optimized GBP listing, but it complements and reinforces your overall local SEO strategy. Take 30 minutes to implement it today — it is a long-term investment with no recurring cost.

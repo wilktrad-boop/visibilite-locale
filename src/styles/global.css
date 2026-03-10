@@ -1,0 +1,37 @@
+@import "tailwindcss";
+
+:root {
+  --ink: #0F172A;
+  --ink-2: #334155;
+  --muted: #64748B;
+  --bg: #FFFFFF;
+  --bg-soft: #F8FAFC;
+  --line: #E2E8F0;
+  --accent: #2563EB;
+  --accent-dark: #1D4ED8;
+  --accent-light: #EFF6FF;
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: Inter, system-ui, -apple-system, sans-serif;
+  color: var(--ink-2);
+  background: var(--bg);
+  -webkit-font-smoothing: antialiased;
+}
+
+.prose h2 {
+  font-size: 1.5rem; font-weight: 700; color: var(--ink);
+  margin-top: 2rem; margin-bottom: 0.75rem;
+  padding-left: 0.75rem; border-left: 3px solid var(--accent);
+}
+.prose h3 {
+  font-size: 1.2rem; font-weight: 600; color: var(--ink);
+  margin-top: 1.5rem; margin-bottom: 0.5rem;
+}
+.prose p { line-height: 1.75; margin-bottom: 1.25rem; color: var(--ink-2); }
+.prose a { color: var(--accent); text-decoration: underline; text-underline-offset: 3px; }
+.prose ul { list-style: none; padding: 0; margin-bottom: 1.25rem; }
+.prose ul li { padding-left: 1.5rem; position: relative; margin-bottom: 0.5rem; color: var(--ink-2); }
+.prose ul li::before { content: "→"; position: absolute; left: 0; color: var(--accent); font-weight: 700; }

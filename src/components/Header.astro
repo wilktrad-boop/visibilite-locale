@@ -1,0 +1,56 @@
+---
+import { useTranslations, getLangFromUrl, type Lang } from '../i18n/ui';
+
+interface Props { lang?: string; }
+const { lang = 'fr' } = Astro.props;
+const t = useTranslations(lang as Lang);
+
+const base = lang === 'fr' ? '' : `/${lang}`;
+---
+
+<header class="sticky top-0 z-50 border-b border-gray-200 bg-white/90 backdrop-blur-sm">
+  <div class="mx-auto max-w-5xl px-4 sm:px-6">
+    <div class="flex h-16 items-center justify-between">
+      <!-- Logo -->
+      <a href={`${base}/`} class="text-lg font-bold text-gray-900">
+        visibilite-locale<span class="text-blue-600">.online</span>
+      </a>
+
+      <!-- Nav desktop -->
+      <nav class="hidden items-center gap-6 md:flex">
+        <a href={`${base}/`} class="text-sm font-medium text-gray-600 hover:text-blue-600 transition-colors">{t('nav.home')}</a>
+        <a href={`${base}/guide-seo-local`} class="text-sm font-medium text-gray-600 hover:text-blue-600 transition-colors">{t('nav.guide')}</a>
+        <a href={`${base}/blog`} class="text-sm font-medium text-gray-600 hover:text-blue-600 transition-colors">{t('nav.blog')}</a>
+      </nav>
+
+      <!-- Sélecteur de langue -->
+      <div class="flex items-center gap-2 text-sm">
+        <a href="/" class={`font-medium transition-colors ${lang === 'fr' ? 'text-blue-600' : 'text-gray-400 hover:text-gray-700'}`}>FR</a>
+        <span class="text-gray-300">/</span>
+        <a href="/en/" class={`font-medium transition-colors ${lang === 'en' ? 'text-blue-600' : 'text-gray-400 hover:text-gray-700'}`}>EN</a>
+        <span class="text-gray-300">/</span>
+        <a href="/es/" class={`font-medium transition-colors ${lang === 'es' ? 'text-blue-600' : 'text-gray-400 hover:text-gray-700'}`}>ES</a>
+      </div>
+
+      <!-- Burger mobile -->
+      <button id="burger" class="flex flex-col justify-center gap-1.5 p-2 md:hidden" aria-label="Menu">
+        <span class="block h-0.5 w-5 bg-gray-700 transition-all duration-200"></span>
+        <span class="block h-0.5 w-5 bg-gray-700 transition-all duration-200"></span>
+        <span class="block h-0.5 w-5 bg-gray-700 transition-all duration-200"></span>
+      </button>
+    </div>
+  </div>
+
+  <!-- Menu mobile -->
+  <div id="mobile-menu" class="hidden border-t border-gray-100 bg-white px-4 pb-4 md:hidden">
+    <a href={`${base}/`} class="block py-3 text-sm font-medium text-gray-700 border-b border-gray-100">{t('nav.home')}</a>
+    <a href={`${base}/guide-seo-local`} class="block py-3 text-sm font-medium text-gray-700 border-b border-gray-100">{t('nav.guide')}</a>
+    <a href={`${base}/blog`} class="block py-3 text-sm font-medium text-gray-700">{t('nav.blog')}</a>
+  </div>
+</header>
+
+<script>
+  const burger = document.getElementById('burger');
+  const menu = document.getElementById('mobile-menu');
+  burger?.addEventListener('click', () => menu?.classList.toggle('hidden'));
+</script>

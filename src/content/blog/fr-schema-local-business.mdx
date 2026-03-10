@@ -1,0 +1,154 @@
+---
+title: "Schema markup LocalBusiness : guide d'implémentation"
+description: "Le schema LocalBusiness aide Google à comprendre votre entreprise et peut déclencher des rich snippets. Voici comment l'implémenter correctement sur votre site."
+date: "2026-03-10"
+lang: "fr"
+---
+
+## Schema markup LocalBusiness : guide d'implémentation
+
+Le schema markup est l'un des leviers SEO les plus techniques, mais aussi l'un des plus accessibles dès lors qu'on comprend sa logique. Pour les entreprises locales, le schema `LocalBusiness` permet d'indiquer à Google — de façon structurée et non ambiguë — les informations essentielles de votre établissement : nom, adresse, téléphone, horaires, secteur d'activité, zone de service.
+
+## Qu'est-ce que le schema markup ?
+
+Le schema markup (ou données structurées) est un code que vous ajoutez à votre site web pour aider les moteurs de recherche à comprendre le contenu de vos pages. Il utilise un vocabulaire standardisé défini sur Schema.org, et peut être intégré dans votre HTML sous forme de JSON-LD (recommandé), Microdata ou RDFa.
+
+Google peut utiliser ces données pour afficher des **rich snippets** (résultats enrichis) dans ses pages de résultats, mais même sans affichage visible, les données structurées améliorent la compréhension de votre contenu par l'algorithme.
+
+## Pourquoi LocalBusiness est essentiel pour le SEO local
+
+Le schema `LocalBusiness` est particulièrement important parce qu'il :
+
+- Renforce la cohérence de vos informations NAP (Nom, Adresse, Téléphone) sur le web
+- Aide Google à associer votre site à votre fiche Google Business Profile
+- Peut déclencher l'affichage de vos horaires ou de votre note directement dans les résultats
+- Renforce la pertinence de vos pages pour des requêtes locales
+
+## Structure de base d'un schema LocalBusiness
+
+Voici un exemple JSON-LD à placer dans la balise `<head>` de votre page (ou dans le `<body>`) :
+
+```json
+{
+  "@context": "https://schema.org",
+  "@type": "LocalBusiness",
+  "name": "Plomberie Martin",
+  "image": "https://www.plomberie-martin.fr/images/logo.jpg",
+  "url": "https://www.plomberie-martin.fr",
+  "telephone": "+33 4 76 00 00 00",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "12 rue des Artisans",
+    "addressLocality": "Grenoble",
+    "postalCode": "38000",
+    "addressCountry": "FR"
+  },
+  "geo": {
+    "@type": "GeoCoordinates",
+    "latitude": 45.1885,
+    "longitude": 5.7245
+  },
+  "openingHoursSpecification": [
+    {
+      "@type": "OpeningHoursSpecification",
+      "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+      "opens": "08:00",
+      "closes": "19:00"
+    },
+    {
+      "@type": "OpeningHoursSpecification",
+      "dayOfWeek": "Saturday",
+      "opens": "09:00",
+      "closes": "17:00"
+    }
+  ],
+  "priceRange": "€€",
+  "description": "Plombier à Grenoble, intervention rapide pour tous travaux de plomberie et dépannage.",
+  "areaServed": {
+    "@type": "City",
+    "name": "Grenoble"
+  }
+}
+```
+
+## Les types spécialisés à utiliser
+
+`LocalBusiness` est un type générique. Pour une meilleure précision, utilisez un sous-type correspondant à votre activité :
+
+| Secteur | Type Schema |
+|---|---|
+| Restaurant | `Restaurant` |
+| Médecin | `Physician` |
+| Avocat | `LegalService` |
+| Hôtel | `Hotel` |
+| Salon de coiffure | `HairSalon` |
+| Électricien / Plombier | `HomeAndConstructionBusiness` |
+| Dentiste | `Dentist` |
+| Pharmacie | `Pharmacy` |
+
+Remplacez simplement `"@type": "LocalBusiness"` par le type approprié.
+
+## Propriétés avancées utiles
+
+### areaServed
+
+Si vous intervenez sur plusieurs villes, vous pouvez lister plusieurs zones :
+
+```json
+"areaServed": [
+  { "@type": "City", "name": "Grenoble" },
+  { "@type": "City", "name": "Voiron" },
+  { "@type": "AdministrativeArea", "name": "Isère" }
+]
+```
+
+### aggregateRating
+
+Si vous avez des avis, vous pouvez les inclure (en vous assurant que les données correspondent à vos avis réels) :
+
+```json
+"aggregateRating": {
+  "@type": "AggregateRating",
+  "ratingValue": "4.8",
+  "reviewCount": "124"
+}
+```
+
+### sameAs
+
+Liez vos profils sociaux et vos annuaires pour renforcer la cohérence :
+
+```json
+"sameAs": [
+  "https://www.facebook.com/plomberiemartin",
+  "https://www.pages-jaunes.fr/plomberie-martin-grenoble"
+]
+```
+
+## Où placer le code
+
+Le JSON-LD se place idéalement dans la balise `<head>` de vos pages, mais Google l'accepte aussi dans le `<body>`. Ajoutez-le sur :
+
+- La page d'accueil
+- Chaque page de service
+- Chaque page locale ("service + ville")
+
+## Comment tester votre implémentation
+
+Utilisez l'outil officiel de Google :
+
+1. **Rich Results Test** : [search.google.com/test/rich-results](https://search.google.com/test/rich-results) — pour vérifier que votre schema est valide et éligible aux rich snippets.
+2. **Schema Markup Validator** : [validator.schema.org](https://validator.schema.org) — pour une validation technique complète.
+
+Si des erreurs apparaissent, Google Search Console les signale également dans la section "Améliorations".
+
+## Erreurs courantes à éviter
+
+- **Données fictives ou incorrectes** : n'inventez jamais une note ou un nombre d'avis. Google peut pénaliser les données structurées trompeuses.
+- **Incohérence NAP** : assurez-vous que le nom, l'adresse et le téléphone dans votre schema correspondent exactement à ceux de votre fiche Google Business Profile.
+- **Oublier les horaires** : c'est l'une des propriétés les plus utiles pour les utilisateurs et les moteurs de recherche.
+- **Ne mettre le schema que sur la page d'accueil** : répliquez-le sur toutes vos pages locales importantes.
+
+## Conclusion
+
+Le schema LocalBusiness est une implémentation relativement simple qui apporte un signal SEO supplémentaire à votre présence locale. Il ne remplace pas un bon contenu ou une fiche GBP bien optimisée, mais il complète et renforce l'ensemble de votre stratégie SEO local. Prenez 30 minutes pour l'implémenter aujourd'hui — c'est un investissement à long terme.
