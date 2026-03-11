@@ -1,0 +1,19 @@
+User-agent: *
+Disallow: /ai/
+
+User-agent: GPTBot
+Allow: /ai/
+
+User-agent: Claude-Web
+Allow: /ai/
+
+User-agent: anthropic-ai
+Allow: /ai/
+
+User-agent: PerplexityBot
+Allow: /ai/
+
+User-agent: Googlebot
+Disallow: /ai/
+
+Sitemap: https://visibilite-locale.fr/sitemap.xml
