@@ -1,0 +1,213 @@
+---
+title: "Datos estructurados avanzados para SEO local: FAQ, HowTo y Event"
+description: "Implementa schemas avanzados como FAQ, HowTo y Event para mejorar tu SEO local. Guia practica con ejemplos para negocios y proveedores de servicios."
+date: "2026-03-21"
+lang: "es"
+---
+
+## Mas alla del schema LocalBusiness
+
+Si ya tienes implementado el schema LocalBusiness en tu sitio web (nombre, direccion, telefono, horarios, coordenadas), estas en el buen camino. Pero te quedas corto. Google soporta decenas de tipos de datos estructurados que pueden mejorar tu visibilidad en los resultados de busqueda, y varios de ellos son especialmente utiles para negocios locales.
+
+Los schemas FAQ, HowTo y Event permiten que tu contenido aparezca con fragmentos enriquecidos (rich snippets) que ocupan mas espacio visual en los resultados y proporcionan informacion directamente util al usuario. Esto se traduce en mayor tasa de clics y mayor relevancia percibida.
+
+## Schema FAQ: preguntas frecuentes
+
+### Que es y para que sirve
+
+El schema FAQPage marca una pagina que contiene una lista de preguntas con sus respuestas. Cuando Google detecta este marcado, puede mostrar las preguntas directamente en los resultados de busqueda como acordeones desplegables.
+
+### Cuando usarlo en SEO local
+
+El schema FAQ es ideal para:
+
+- **Paginas de servicio**: Anade 3-5 preguntas frecuentes al final de cada pagina de servicio. "Cuanto cuesta una revision dental?", "Necesito cita previa?", "Cubrais urgencias los fines de semana?"
+- **Paginas de ciudad**: Incluye preguntas especificas de esa ubicacion. "En que barrios de Madrid ofreceis servicio?", "Cual es el tiempo de respuesta en Getafe?"
+- **Pagina de contacto**: Preguntas sobre ubicacion, aparcamiento, accesibilidad.
+
+### Ejemplo de implementacion
+
+El schema FAQ se implementa en formato JSON-LD dentro de la etiqueta `<script>` en el `<head>` de la pagina:
+
+```json
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Cual es el precio de una limpieza dental en vuestra clinica de Madrid?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "El precio de una limpieza dental en nuestra clinica de Madrid Centro es de 60 euros. Incluye revision completa y recomendaciones personalizadas de higiene bucodental."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Atendeis urgencias dentales los fines de semana?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Si, nuestra clinica dental en Madrid ofrece servicio de urgencias los sabados de 9:00 a 14:00. Para urgencias fuera de este horario, llama al 91 XXX XX XX."
+      }
+    }
+  ]
+}
+```
+
+### Buenas practicas
+
+- **Las preguntas deben estar visibles en la pagina**. Google rechaza el schema FAQ si las preguntas solo estan en el codigo pero no son visibles para el usuario.
+- **Respuestas concisas pero completas**. Entre 50 y 200 palabras por respuesta es ideal.
+- **Incluye keywords locales de forma natural** en las preguntas y respuestas.
+- **No abuses**: 3-8 preguntas por pagina es suficiente. No marques todo tu contenido como FAQ.
+
+## Schema HowTo: guias paso a paso
+
+### Que es y para que sirve
+
+El schema HowTo marca contenido que explica como realizar una tarea paso a paso. Google puede mostrar los pasos directamente en los resultados de busqueda, con un formato visual atractivo que incluye imagenes, tiempos y materiales necesarios.
+
+### Cuando usarlo en SEO local
+
+Este schema es particularmente valido para proveedores de servicios que publican contenido educativo:
+
+- **Articulos de blog**: "Como preparar tu casa antes de una mudanza", "Como detectar una fuga de agua", "Como elegir el color de pintura para tu salon".
+- **Guias de mantenimiento**: "Como mantener tu caldera en invierno", "Como cuidar tu jardin en verano".
+- **Tutoriales sencillos**: "Como cambiar un enchufe paso a paso", "Como limpiar los filtros del aire acondicionado".
+
+El objetivo no es que el usuario lo haga solo (probablemente te contratara de todos modos), sino posicionar tu negocio como experto local y generar confianza.
+
+### Ejemplo de implementacion
+
+```json
+{
+  "@context": "https://schema.org",
+  "@type": "HowTo",
+  "name": "Como detectar una fuga de agua en tu vivienda",
+  "description": "Guia paso a paso para identificar fugas de agua en tu hogar antes de llamar a un fontanero profesional.",
+  "totalTime": "PT15M",
+  "estimatedCost": {
+    "@type": "MonetaryAmount",
+    "currency": "EUR",
+    "value": "0"
+  },
+  "step": [
+    {
+      "@type": "HowToStep",
+      "name": "Revisa el contador de agua",
+      "text": "Cierra todos los grifos y electrodomesticos que consuman agua. Anota la lectura del contador. Espera 30 minutos sin usar agua. Si la lectura ha cambiado, tienes una fuga."
+    },
+    {
+      "@type": "HowToStep",
+      "name": "Inspecciona las zonas visibles",
+      "text": "Revisa debajo de los fregaderos, detras del inodoro, alrededor de la lavadora y el lavavajillas. Busca manchas de humedad, moho o goteos."
+    },
+    {
+      "@type": "HowToStep",
+      "name": "Comprueba la presion del agua",
+      "text": "Si notas una caida de presion al abrir varios grifos simultaneamente, puede indicar una fuga en la instalacion general."
+    },
+    {
+      "@type": "HowToStep",
+      "name": "Contacta con un profesional",
+      "text": "Si detectas indicios de fuga que no puedes localizar visualmente, contacta con un fontanero profesional que pueda realizar una deteccion con equipos especializados."
+    }
+  ]
+}
+```
+
+### Buenas practicas
+
+- **Incluye tiempo estimado y coste** cuando sea posible. Google puede mostrarlos en los resultados.
+- **Anade imagenes a cada paso** si tienes fotografias relevantes. Mejora significativamente la apariencia del rich snippet.
+- **Los pasos deben ser claros y accionables**. Cada paso debe describir una accion concreta.
+- **Enlaza a tu pagina de servicio** al final del HowTo. El contenido educativo debe llevar al usuario hacia la conversion.
+
+## Schema Event: eventos locales
+
+### Que es y para que sirve
+
+El schema Event marca eventos que tienen fecha, hora y ubicacion especificas. Google muestra los eventos en un formato destacado en los resultados de busqueda, incluyendo la fecha, el lugar y a veces el precio.
+
+### Cuando usarlo en SEO local
+
+Cualquier negocio local que organice actividades puede beneficiarse:
+
+- **Jornadas de puertas abiertas**: Inauguraciones, aniversarios, eventos especiales.
+- **Talleres y formaciones**: Cursos de cocina en un restaurante, talleres de bricolaje en una ferreteria, clases de prueba en un gimnasio.
+- **Eventos comunitarios**: Mercadillos, ferias, degustaciones.
+- **Promociones con fecha**: Ofertas especiales por Black Friday, rebajas de temporada.
+- **Webinars locales**: Charlas online sobre temas relevantes para la comunidad.
+
+### Ejemplo de implementacion
+
+```json
+{
+  "@context": "https://schema.org",
+  "@type": "Event",
+  "name": "Taller gratuito de bricolaje basico",
+  "description": "Aprende a realizar reparaciones basicas del hogar en nuestro taller practico gratuito.",
+  "startDate": "2026-04-15T10:00:00+02:00",
+  "endDate": "2026-04-15T12:00:00+02:00",
+  "eventStatus": "https://schema.org/EventScheduled",
+  "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
+  "location": {
+    "@type": "Place",
+    "name": "Ferreteria Martinez",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "Calle Mayor 15",
+      "addressLocality": "Zaragoza",
+      "postalCode": "50001",
+      "addressCountry": "ES"
+    }
+  },
+  "organizer": {
+    "@type": "LocalBusiness",
+    "name": "Ferreteria Martinez",
+    "url": "https://www.ferreteriamartinez.es"
+  },
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "EUR",
+    "availability": "https://schema.org/InStock"
+  }
+}
+```
+
+### Buenas practicas
+
+- **Mantiene los eventos actualizados**. Elimina o marca como pasados los eventos que ya se han celebrado.
+- **Incluye toda la informacion posible**: fecha, hora, ubicacion exacta, precio, organizador.
+- **Usa el eventStatus correcto**: EventScheduled, EventPostponed, EventCancelled o EventMovedOnline.
+- **Crea una pagina dedicada** para cada evento. No marques como Event una simple mencion en un parrafo.
+
+## Combinar schemas en una misma pagina
+
+Puedes (y debes) combinar varios schemas en una misma pagina:
+
+- **Pagina de servicio**: LocalBusiness + FAQPage
+- **Articulo de blog educativo**: Article + HowTo
+- **Pagina de evento**: Event + LocalBusiness (como organizador)
+- **Pagina principal**: LocalBusiness + FAQPage + Event (si tienes un evento proximo)
+
+Cada schema se incluye en un bloque JSON-LD separado o puedes anidarlos dentro de un `@graph`.
+
+## Validacion y seguimiento
+
+### Herramientas de validacion
+
+- **Rich Results Test de Google**: Introduce tu URL y verifica si los datos estructurados son validos y elegibles para rich snippets.
+- **Schema Markup Validator**: Valida la sintaxis de tu JSON-LD de forma mas detallada.
+- **Google Search Console**: La seccion "Mejoras" muestra los tipos de datos estructurados detectados, los errores y las advertencias.
+
+### Seguimiento del impacto
+
+- Revisa el informe de rendimiento en Search Console con el filtro de "Aspecto de la busqueda" para ver cuantas impresiones y clics generan los rich snippets.
+- Compara la tasa de clics (CTR) de paginas con y sin datos estructurados.
+- Monitoriza la aparicion de tus rich snippets buscando tus keywords objetivo en Google.
+
+## Conclusion
+
+Los datos estructurados avanzados son una ventaja competitiva que la mayoria de negocios locales aun no aprovecha. Implementar schemas FAQ, HowTo y Event no requiere conocimientos de programacion profundos; basta con anadir bloques JSON-LD en el codigo de tus paginas o usar plugins de tu CMS. El resultado es una mayor visibilidad en los resultados de busqueda, mas espacio visual y una mejor tasa de clics. Empieza anadiendo un schema FAQ a tus paginas de servicio principales y expande desde ahi.

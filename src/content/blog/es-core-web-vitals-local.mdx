@@ -1,0 +1,153 @@
+---
+title: "Core Web Vitals y SEO local: optimizar el rendimiento tecnico"
+description: "Guia practica sobre Core Web Vitals para negocios locales. Aprende a mejorar LCP, INP y CLS para un mejor posicionamiento en busquedas locales."
+date: "2026-03-21"
+lang: "es"
+---
+
+## Que son los Core Web Vitals y por que importan en SEO local
+
+Los Core Web Vitals (CWV) son un conjunto de metricas de rendimiento web que Google utiliza como factor de posicionamiento. Miden la experiencia real del usuario al cargar e interactuar con tu sitio web. Desde 2021, forman parte de los factores de clasificacion de Google, y su importancia ha crecido con cada actualizacion del algoritmo.
+
+Para un negocio local, esto tiene implicaciones directas. Si tu sitio web tarda demasiado en cargar, se mueve de forma inesperada mientras carga, o no responde rapidamente a los clics, Google lo penaliza en los resultados de busqueda. Y en un mercado local donde compites con otros tres o cuatro negocios por las primeras posiciones, esa penalizacion puede marcar la diferencia entre aparecer o no.
+
+## Las tres metricas fundamentales
+
+### LCP (Largest Contentful Paint)
+
+El LCP mide el tiempo que tarda en cargarse el elemento visible mas grande de la pagina, normalmente una imagen principal o un bloque de texto destacado.
+
+- **Bueno**: Menos de 2,5 segundos
+- **Necesita mejora**: Entre 2,5 y 4 segundos
+- **Malo**: Mas de 4 segundos
+
+**Causas habituales de un LCP lento en sitios locales:**
+
+- Imagenes de cabecera sin optimizar (fotos del establecimiento subidas directamente desde la camara)
+- Hosting compartido de baja calidad
+- Tipografias web que tardan en cargar
+- Scripts de terceros que bloquean la carga (widgets de resenas, chat en vivo, mapas)
+
+### INP (Interaction to Next Paint)
+
+El INP sustituyo al FID (First Input Delay) en marzo de 2024. Mide la latencia de todas las interacciones del usuario durante su visita, no solo la primera.
+
+- **Bueno**: Menos de 200 milisegundos
+- **Necesita mejora**: Entre 200 y 500 milisegundos
+- **Malo**: Mas de 500 milisegundos
+
+**Causas habituales de un INP alto:**
+
+- JavaScript pesado que bloquea el hilo principal
+- Widgets y plugins de terceros (reservas online, chat, formularios complejos)
+- Animaciones mal implementadas
+- Eventos de clic que ejecutan demasiadas operaciones
+
+### CLS (Cumulative Layout Shift)
+
+El CLS mide la estabilidad visual de la pagina. Registra cuanto se desplazan los elementos durante la carga. Si has experimentado que un boton se mueve justo cuando ibas a hacer clic, eso es un problema de CLS.
+
+- **Bueno**: Menos de 0,1
+- **Necesita mejora**: Entre 0,1 y 0,25
+- **Malo**: Mas de 0,25
+
+**Causas habituales de CLS alto:**
+
+- Imagenes sin dimensiones definidas (width y height)
+- Anuncios o banners que se insertan dinamicamente
+- Tipografias web que cambian de tamano al cargar
+- Contenido inyectado por JavaScript despues de la carga inicial
+
+## Por que los CWV son especialmente importantes para negocios locales
+
+### Busquedas moviles dominan el trafico local
+
+Mas del 60% de las busquedas locales se realizan desde moviles, a menudo en condiciones de conexion no ideales (en la calle, en transporte publico, con datos moviles). Un sitio que carga rapido y funciona bien en movil tiene una ventaja decisiva.
+
+### El usuario local tiene prisa
+
+Quien busca "fontanero urgente cerca de mi" no va a esperar 8 segundos a que cargue tu pagina. Si tu sitio tarda, el usuario vuelve atras y hace clic en el siguiente resultado. Google detecta este patron (pogo-sticking) y lo interpreta como una senal negativa.
+
+### Factor de desempate
+
+En busquedas locales, cuando varios negocios tienen fichas GBP similares, resenas parecidas y contenido comparable, los Core Web Vitals pueden actuar como factor de desempate. El sitio mas rapido y estable tiene ventaja.
+
+## Acciones rapidas para mejorar los Core Web Vitals
+
+### Optimizar imagenes (impacto en LCP y CLS)
+
+Las imagenes son el problema numero uno en la mayoria de sitios web de negocios locales:
+
+- **Redimensiona las imagenes** al tamano real al que se muestran. Una foto de 4000x3000 pixeles para mostrarse a 800x600 es un desperdicio de ancho de banda.
+- **Usa formatos modernos**: WebP ofrece mejor compresion que JPEG sin perder calidad visible. La mayoria de CMS modernos lo soportan.
+- **Implementa carga diferida (lazy loading)**: Las imagenes que no estan visibles en la pantalla inicial no deberían cargarse hasta que el usuario haga scroll.
+- **Define siempre width y height** en las etiquetas de imagen para evitar saltos de diseno (CLS).
+
+### Mejorar el hosting (impacto en LCP)
+
+El hosting es la base de todo. Un hosting compartido barato puede anadis 1-2 segundos a tu tiempo de carga:
+
+- **Considera un hosting de calidad** como SiteGround, Raiola Networks o similar, con servidores en Espana o Europa.
+- **Activa la compresion GZIP o Brotli** si tu hosting lo permite.
+- **Utiliza un CDN** (Content Delivery Network) como Cloudflare para servir archivos estaticos desde servidores cercanos al usuario.
+
+### Reducir scripts de terceros (impacto en INP y LCP)
+
+Cada script externo que cargas en tu sitio anade peso y tiempo de procesamiento:
+
+- **Audita todos los scripts** de tu sitio: analytics, chat en vivo, widgets de resenas, redes sociales, mapas.
+- **Elimina los que no uses realmente**. Si anadiste un widget de chat hace dos anos y nadie lo usa, quitalo.
+- **Carga los scripts de forma asincrona** (async o defer) para que no bloqueen la renderizacion de la pagina.
+- **Retrasa la carga de scripts no esenciales**: El mapa de Google Maps no necesita cargarse hasta que el usuario haga scroll hasta la seccion de contacto.
+
+### Estabilizar el diseno (impacto en CLS)
+
+- **Reserva espacio para elementos dinamicos**: Si tu pagina carga un banner, reserva el espacio antes de que aparezca.
+- **Evita inyectar contenido por encima del fold** despues de la carga inicial.
+- **Usa font-display: swap** para tipografias web, de modo que el texto sea visible inmediatamente con una fuente del sistema mientras carga la web font.
+- **Establece dimensiones fijas para anuncios y embeds** (mapas, videos, formularios).
+
+## Herramientas para medir los Core Web Vitals
+
+### Google PageSpeed Insights
+
+La herramienta gratuita mas completa. Introduce la URL de tu sitio y obtendras:
+
+- Puntuaciones de CWV basadas en datos reales de usuarios (datos de campo).
+- Puntuaciones basadas en simulacion de laboratorio.
+- Recomendaciones especificas de mejora con indicacion del impacto estimado.
+
+### Google Search Console
+
+En la seccion "Experiencia de pagina" encontraras un informe con el estado de los CWV de tu sitio:
+
+- Clasifica tus URLs como "Buenas", "Necesitan mejora" o "Deficientes".
+- Agrupa las URLs con problemas similares para facilitar la correccion.
+- Muestra la evolucion historica de tus metricas.
+
+### Lighthouse (Chrome DevTools)
+
+Integrado en el navegador Chrome, Lighthouse permite ejecutar auditorias de rendimiento directamente desde el navegador:
+
+- Pulsa F12 para abrir DevTools.
+- Ve a la pestana "Lighthouse".
+- Ejecuta una auditoria de rendimiento en modo movil.
+
+### Web Vitals Extension
+
+Una extension de Chrome que muestra los CWV en tiempo real mientras navegas por tu sitio. Util para detectar problemas de CLS que solo aparecen con la interaccion del usuario.
+
+## Plan de accion para negocios locales
+
+Si tienes poco tiempo y recursos limitados, sigue este orden de prioridades:
+
+1. **Mide primero**: Ejecuta PageSpeed Insights en tu pagina de inicio y en tus paginas de servicio principales. Identifica los problemas.
+2. **Optimiza imagenes**: Es la accion con mayor impacto y menor complejidad tecnica. Plugins como ShortPixel o Imagify lo automatizan en WordPress.
+3. **Mejora el hosting** si tu puntuacion de LCP es mala incluso con imagenes optimizadas.
+4. **Reduce plugins y scripts** innecesarios.
+5. **Corrige problemas de CLS** definiendo dimensiones de imagenes y reservando espacio para elementos dinamicos.
+6. **Mide de nuevo** y compara con los resultados anteriores.
+
+## Conclusion
+
+Los Core Web Vitals no son solo una cuestion tecnica; son una cuestion de experiencia de usuario que Google mide y valora. Para un negocio local, tener un sitio web rapido, estable y responsive no es un lujo, es una necesidad competitiva. Las acciones mas impactantes (optimizar imagenes, mejorar el hosting, reducir scripts innecesarios) no requieren grandes conocimientos tecnicos y pueden realizarse en una tarde. Empieza por medir tu situacion actual con PageSpeed Insights y trabaja sobre los problemas que identifiques. Cada segundo que recortes en el tiempo de carga es un cliente potencial que no pierdes.
