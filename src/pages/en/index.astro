@@ -1,8 +1,14 @@
 ---
+import { getCollection } from 'astro:content';
 import Layout from '../../layouts/Layout.astro';
 import { useTranslations } from '../../i18n/ui';
 
 const t = useTranslations('en');
+
+const latestPosts = (await getCollection('blog'))
+  .filter(p => p.data.lang === 'en')
+  .sort((a, b) => new Date(b.data.date).getTime() - new Date(a.data.date).getTime())
+  .slice(0, 6);
 ---
 
 <Layout
@@ -10,27 +16,168 @@ const t = useTranslations('en');
   description="Practical guides, tips and resources on local SEO. Improve your visibility on Google Maps and local search."
   lang="en"
 >
-  <section class="border-b border-gray-200 bg-gradient-to-b from-blue-50 to-white py-20">
-    <div class="mx-auto max-w-3xl px-4 text-center">
-      <p class="mb-4 inline-block rounded-full bg-blue-100 px-4 py-1.5 text-sm font-semibold text-blue-700">
-        The local SEO guide
-      </p>
-      <h1 class="mb-5 text-4xl font-bold text-gray-900 sm:text-5xl leading-tight">
-        {t('hero.title')}
-      </h1>
-      <p class="mb-8 text-lg text-gray-600 leading-relaxed max-w-xl mx-auto">
-        {t('hero.subtitle')}
-      </p>
-      <a href="/en/guide-seo-local" class="inline-flex items-center rounded-lg bg-blue-600 px-6 py-3 text-sm font-semibold text-white shadow-sm transition hover:bg-blue-700">
-        {t('hero.cta')}
-      </a>
+  <!-- Hero -->
+  <section class="relative overflow-hidden bg-gradient-to-br from-blue-700 via-blue-600 to-indigo-700 py-24 text-white">
+    <!-- Decorative circles -->
+    <div class="pointer-events-none absolute -top-24 -right-24 h-96 w-96 rounded-full bg-white/5"></div>
+    <div class="pointer-events-none absolute -bottom-16 -left-16 h-64 w-64 rounded-full bg-white/5"></div>
+    <div class="pointer-events-none absolute top-1/2 left-1/2 h-[600px] w-[600px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-white/[0.03]"></div>
+
+    <div class="relative mx-auto max-w-5xl px-4 sm:px-6">
+      <div class="grid items-center gap-12 lg:grid-cols-2">
+        <!-- Text -->
+        <div>
+          <span class="mb-5 inline-flex items-center gap-2 rounded-full bg-white/15 px-4 py-1.5 text-sm font-semibold backdrop-blur-sm">
+            <svg class="h-4 w-4" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clip-rule="evenodd"/></svg>
+            The local SEO guide
+          </span>
+          <h1 class="mb-5 text-4xl font-extrabold leading-tight sm:text-5xl">
+            {t('hero.title')}
+          </h1>
+          <p class="mb-8 text-lg text-blue-100 leading-relaxed max-w-lg">
+            {t('hero.subtitle')}
+          </p>
+          <div class="flex flex-wrap gap-3">
+            <a href="/en/guide-seo-local" class="inline-flex items-center gap-2 rounded-xl bg-white px-6 py-3 text-sm font-bold text-blue-700 shadow-lg transition hover:bg-blue-50">
+              {t('hero.cta')}
+              <svg class="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+            </a>
+            <a href="/en/blog" class="inline-flex items-center gap-2 rounded-xl border border-white/30 px-6 py-3 text-sm font-semibold text-white transition hover:bg-white/10">
+              Read the blog
+            </a>
+          </div>
+        </div>
+
+        <!-- Illustration -->
+        <div class="hidden lg:flex justify-center">
+          <div class="relative">
+            <!-- Stylized Google Maps card -->
+            <div class="rounded-2xl bg-white/10 backdrop-blur-sm border border-white/20 p-6 shadow-2xl w-72">
+              <div class="mb-4 flex items-center gap-3">
+                <div class="flex h-10 w-10 items-center justify-center rounded-xl bg-white/20">
+                  <svg class="h-5 w-5 text-white" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clip-rule="evenodd"/></svg>
+                </div>
+                <div>
+                  <div class="h-2.5 w-28 rounded bg-white/40"></div>
+                  <div class="mt-1.5 h-2 w-20 rounded bg-white/20"></div>
+                </div>
+              </div>
+              <!-- Stars -->
+              <div class="mb-3 flex gap-1">
+                {[1,2,3,4,5].map(() => <svg class="h-4 w-4 text-yellow-300" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>)}
+              </div>
+              <div class="space-y-2">
+                <div class="h-2 w-full rounded bg-white/20"></div>
+                <div class="h-2 w-5/6 rounded bg-white/20"></div>
+                <div class="h-2 w-4/6 rounded bg-white/20"></div>
+              </div>
+              <!-- "Local Pack" badge -->
+              <div class="mt-4 inline-flex items-center gap-1.5 rounded-full bg-green-400/20 px-3 py-1 text-xs font-semibold text-green-200">
+                <span class="h-1.5 w-1.5 rounded-full bg-green-300"></span>
+                Google Local Pack
+              </div>
+            </div>
+            <!-- Floating badge -->
+            <div class="absolute -top-4 -right-4 rounded-xl bg-yellow-400 px-3 py-1.5 text-xs font-bold text-yellow-900 shadow-lg">
+              +46% clicks
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Stats -->
+      <div class="mt-16 grid grid-cols-3 gap-6 border-t border-white/20 pt-10">
+        {[
+          { val: '46%', label: 'of searches have local intent' },
+          { val: '3x', label: 'more visits with a complete GBP listing' },
+          { val: '80%', label: 'of local searches are from mobile' },
+        ].map(s => (
+          <div class="text-center">
+            <div class="text-3xl font-extrabold text-white">{s.val}</div>
+            <div class="mt-1 text-sm text-blue-200">{s.label}</div>
+          </div>
+        ))}
+      </div>
     </div>
   </section>
 
-  <section class="py-16">
+  <!-- Latest articles -->
+  <section class="py-20">
     <div class="mx-auto max-w-5xl px-4 sm:px-6">
-      <h2 class="mb-10 text-2xl font-bold text-gray-900">{t('latest.title')}</h2>
-      <p class="text-gray-500">Articles coming soon.</p>
+      <div class="mb-10 flex items-end justify-between">
+        <div>
+          <span class="text-xs font-bold uppercase tracking-widest text-blue-600">Blog</span>
+          <h2 class="mt-1 text-3xl font-bold text-gray-900">{t('latest.title')}</h2>
+        </div>
+        <a href="/en/blog" class="hidden sm:inline-flex items-center gap-1 text-sm font-semibold text-blue-600 hover:underline">
+          All articles
+          <svg class="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+        </a>
+      </div>
+
+      <ul class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+        {latestPosts.map((post, i) => (
+          <li class="group flex flex-col rounded-2xl border border-gray-100 bg-white shadow-sm hover:shadow-lg transition-all duration-300 overflow-hidden">
+            <!-- Colored header -->
+            <div class={`h-2 w-full ${['bg-blue-500','bg-indigo-500','bg-violet-500','bg-emerald-500','bg-orange-500','bg-rose-500'][i % 6]}`}></div>
+            <a href={`/en/blog/${post.slug}/`} class="flex flex-col flex-1 p-6">
+              <p class="text-xs text-gray-400 mb-3">{post.data.date}</p>
+              <h3 class="text-base font-bold text-gray-900 group-hover:text-blue-600 transition-colors leading-snug flex-1">{post.data.title}</h3>
+              <p class="mt-3 text-sm text-gray-500 line-clamp-2">{post.data.description}</p>
+              <span class="mt-4 inline-flex items-center gap-1 text-xs font-semibold text-blue-600">
+                Read the article
+                <svg class="h-3.5 w-3.5 transition-transform group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+              </span>
+            </a>
+          </li>
+        ))}
+      </ul>
+
+      <div class="mt-8 text-center sm:hidden">
+        <a href="/en/blog" class="inline-flex items-center gap-1 text-sm font-semibold text-blue-600 hover:underline">
+          All articles →
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Topics -->
+  <section class="bg-gray-50 py-20 border-t border-gray-200">
+    <div class="mx-auto max-w-5xl px-4 sm:px-6">
+      <div class="mb-10">
+        <span class="text-xs font-bold uppercase tracking-widest text-blue-600">Resources</span>
+        <h2 class="mt-1 text-3xl font-bold text-gray-900">Topics</h2>
+      </div>
+      <div class="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+        {[
+          { icon: '\u{1F4CD}', title: 'Google Business Profile', desc: 'Optimize your business listing to appear in the local pack.', href: '/en/guide-seo-local/google-business-profile', color: 'blue' },
+          { icon: '\u{1F5C2}\uFE0F', title: 'Local citations', desc: 'Directories, NAP and consistency of your online information.', href: '/en/guide-seo-local/local-citations', color: 'indigo' },
+          { icon: '\u2B50', title: 'Customer reviews', desc: 'How to get and manage your Google reviews for SEO.', href: '/en/guide-seo-local/customer-reviews', color: 'yellow' },
+          { icon: '\u270D\uFE0F', title: 'Local content', desc: 'Create pages and articles targeting your geographic area.', href: '/en/guide-seo-local/local-content', color: 'emerald' },
+          { icon: '\u{1F517}', title: 'Local backlinks', desc: 'Get links from websites in your region.', href: '/en/guide-seo-local/local-backlinks', color: 'violet' },
+          { icon: '\u{1F3EA}', title: 'Local SEO for businesses', desc: 'Strategies tailored for shops, restaurants and tradespeople.', href: '/en/guide-seo-local/businesses', color: 'rose' },
+        ].map(item => (
+          <a href={item.href} class="group flex items-start gap-4 rounded-2xl border border-gray-200 bg-white p-6 shadow-sm transition-all hover:shadow-md hover:border-blue-200">
+            <span class="text-2xl">{item.icon}</span>
+            <div>
+              <h3 class="font-bold text-gray-900 group-hover:text-blue-600 transition-colors">{item.title}</h3>
+              <p class="mt-1 text-sm text-gray-500 leading-relaxed">{item.desc}</p>
+            </div>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Final CTA -->
+  <section class="py-20">
+    <div class="mx-auto max-w-3xl px-4 text-center">
+      <h2 class="text-3xl font-bold text-gray-900">Ready to dominate your local market?</h2>
+      <p class="mt-4 text-lg text-gray-500">Start with our complete local SEO guide — free and no sign-up required.</p>
+      <a href="/en/guide-seo-local" class="mt-8 inline-flex items-center gap-2 rounded-xl bg-blue-600 px-8 py-4 text-sm font-bold text-white shadow-lg transition hover:bg-blue-700">
+        Access the free guide
+        <svg class="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+      </a>
     </div>
   </section>
 </Layout>
