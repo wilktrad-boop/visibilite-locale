@@ -8,10 +8,66 @@ interface Props {
   description: string;
   lang?: string;
   canonicalURL?: string;
+  alternates?: { fr?: string; en?: string; es?: string };
+  article?: { date?: string; author?: string };
+  jsonLd?: Record<string, unknown>;
 }
 
-const { title, description, lang = 'fr', canonicalURL } = Astro.props;
+const { title, description, lang = 'fr', canonicalURL, alternates, article, jsonLd } = Astro.props;
 const canonical = canonicalURL ?? Astro.url.href;
+const siteUrl = 'https://visibilite-locale.online';
+const ogImageUrl = `${siteUrl}/og-default.png`;
+
+// Build hreflang URLs from alternates or auto-detect from current path
+const currentPath = Astro.url.pathname;
+let hreflangs: { lang: string; href: string }[] = [];
+
+if (alternates) {
+  if (alternates.fr) hreflangs.push({ lang: 'fr', href: `${siteUrl}${alternates.fr}` });
+  if (alternates.en) hreflangs.push({ lang: 'en', href: `${siteUrl}${alternates.en}` });
+  if (alternates.es) hreflangs.push({ lang: 'es', href: `${siteUrl}${alternates.es}` });
+} else {
+  // Auto-detect alternates based on URL pattern
+  if (currentPath === '/' || currentPath === '/en/' || currentPath === '/es/') {
+    hreflangs = [
+      { lang: 'fr', href: `${siteUrl}/` },
+      { lang: 'en', href: `${siteUrl}/en/` },
+      { lang: 'es', href: `${siteUrl}/es/` },
+    ];
+  } else if (currentPath.startsWith('/blog') || currentPath.startsWith('/guide-seo-local')) {
+    hreflangs = [{ lang: 'fr', href: `${siteUrl}${currentPath}` }];
+  } else if (currentPath.startsWith('/en/')) {
+    hreflangs = [{ lang: 'en', href: `${siteUrl}${currentPath}` }];
+  } else if (currentPath.startsWith('/es/')) {
+    hreflangs = [{ lang: 'es', href: `${siteUrl}${currentPath}` }];
+  }
+}
+
+// Default x-default to FR version
+const xDefault = hreflangs.find(h => h.lang === 'fr')?.href ?? canonical;
+
+// Build JSON-LD structured data
+const defaultJsonLd = jsonLd ?? {
+  '@context': 'https://schema.org',
+  '@type': 'WebSite',
+  name: 'visibilite-locale.online',
+  url: siteUrl,
+  description: 'Guides pratiques et ressources sur le SEO local.',
+  inLanguage: lang,
+};
+
+const breadcrumbJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    {
+      '@type': 'ListItem',
+      position: 1,
+      name: lang === 'es' ? 'Inicio' : lang === 'en' ? 'Home' : 'Accueil',
+      item: lang === 'es' ? `${siteUrl}/es/` : lang === 'en' ? `${siteUrl}/en/` : `${siteUrl}/`,
+    },
+  ],
+};
 ---
 
 <!doctype html>
@@ -24,12 +80,39 @@ const canonical = canonicalURL ?? Astro.url.href;
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="icon" type="image/x-icon" href="/favicon.ico" />
     <link rel="canonical" href={canonical} />
+
+    <!-- Hreflang -->
+    {hreflangs.map(h => (
+      <link rel="alternate" hreflang={h.lang} href={h.href} />
+    ))}
+    {hreflangs.length > 0 && (
+      <link rel="alternate" hreflang="x-default" href={xDefault} />
+    )}
+
+    <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+
+    <!-- Open Graph -->
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
-    <meta property="og:type" content="website" />
+    <meta property="og:type" content={article ? 'article' : 'website'} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:image" content={ogImageUrl} />
+    <meta property="og:site_name" content="visibilite-locale.online" />
+    <meta property="og:locale" content={lang === 'es' ? 'es_ES' : lang === 'en' ? 'en_US' : 'fr_FR'} />
+    {article?.date && <meta property="article:published_time" content={article.date} />}
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImageUrl} />
+
+    <!-- Structured Data -->
+    <script type="application/ld+json" set:html={JSON.stringify(defaultJsonLd)} />
+    <script type="application/ld+json" set:html={JSON.stringify(breadcrumbJsonLd)} />
   </head>
   <body>
     <Header lang={lang} />

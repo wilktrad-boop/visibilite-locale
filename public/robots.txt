@@ -16,4 +16,4 @@ Allow: /ai/
 User-agent: Googlebot
 Disallow: /ai/
 
-Sitemap: https://visibilite-locale.fr/sitemap.xml
+Sitemap: https://visibilite-locale.online/sitemap-index.xml

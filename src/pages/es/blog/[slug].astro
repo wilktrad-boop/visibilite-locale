@@ -14,18 +14,62 @@ export async function getStaticPaths() {
 
 const { post } = Astro.props;
 const { Content } = await post.render();
+const siteUrl = 'https://visibilite-locale.online';
+const articleUrl = `${siteUrl}/es/blog/${post.slug}/`;
+
+const articleJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'Article',
+  headline: post.data.title,
+  description: post.data.description,
+  datePublished: post.data.date,
+  url: articleUrl,
+  inLanguage: 'es',
+  publisher: {
+    '@type': 'Organization',
+    name: 'visibilite-locale.online',
+    url: siteUrl,
+  },
+  mainEntityOfPage: {
+    '@type': 'WebPage',
+    '@id': articleUrl,
+  },
+};
 ---
 
 <Layout
   title={post.data.title}
   description={post.data.description}
   lang="es"
+  article={{ date: post.data.date }}
+  jsonLd={articleJsonLd}
 >
+  <!-- Header article -->
+  <div class="bg-gradient-to-br from-blue-700 to-indigo-700 py-16 text-white">
+    <div class="mx-auto max-w-3xl px-4">
+      <a href="/es/blog" class="mb-6 inline-flex items-center gap-1.5 text-sm text-blue-200 hover:text-white transition-colors">
+        <svg class="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/></svg>
+        Volver al blog
+      </a>
+      <p class="text-sm text-blue-200 mb-3">{post.data.date}</p>
+      <h1 class="text-3xl font-extrabold leading-tight sm:text-4xl">{post.data.title}</h1>
+      <p class="mt-4 text-lg text-blue-100 leading-relaxed">{post.data.description}</p>
+    </div>
+  </div>
+
+  <!-- Contenido -->
   <article class="mx-auto max-w-3xl px-4 py-14">
-    <p class="text-xs text-gray-400 mb-4">{post.data.date}</p>
-    <h1 class="text-4xl font-bold text-gray-900 mb-8">{post.data.title}</h1>
-    <div class="prose prose-gray max-w-none">
+    <div class="prose">
       <Content />
+    </div>
+
+    <!-- CTA -->
+    <div class="mt-16 rounded-2xl bg-gradient-to-br from-blue-600 to-indigo-600 p-8 text-white text-center">
+      <h2 class="text-xl font-bold">Mejora tu visibilidad local</h2>
+      <p class="mt-2 text-blue-100 text-sm">Consulta nuestra guia completa para dominar los resultados locales en Google.</p>
+      <a href="/es/guide-seo-local" class="mt-5 inline-flex items-center gap-2 rounded-xl bg-white px-6 py-3 text-sm font-bold text-blue-700 transition hover:bg-blue-50">
+        Acceder a la guia gratuita →
+      </a>
     </div>
   </article>
 </Layout>

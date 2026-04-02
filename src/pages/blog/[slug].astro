@@ -14,12 +14,35 @@ export async function getStaticPaths() {
 
 const { post } = Astro.props;
 const { Content } = await post.render();
+const siteUrl = 'https://visibilite-locale.online';
+const articleUrl = `${siteUrl}/blog/${post.slug}/`;
+
+const articleJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'Article',
+  headline: post.data.title,
+  description: post.data.description,
+  datePublished: post.data.date,
+  url: articleUrl,
+  inLanguage: 'fr',
+  publisher: {
+    '@type': 'Organization',
+    name: 'visibilite-locale.online',
+    url: siteUrl,
+  },
+  mainEntityOfPage: {
+    '@type': 'WebPage',
+    '@id': articleUrl,
+  },
+};
 ---
 
 <Layout
   title={post.data.title}
   description={post.data.description}
   lang={post.data.lang}
+  article={{ date: post.data.date }}
+  jsonLd={articleJsonLd}
 >
   <!-- Header article -->
   <div class="bg-gradient-to-br from-blue-700 to-indigo-700 py-16 text-white">
