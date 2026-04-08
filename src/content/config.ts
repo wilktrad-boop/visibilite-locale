@@ -8,6 +8,11 @@ const blog = defineCollection({
     date: z.string(),
     lang: z.enum(['fr', 'en', 'es']),
     slug: z.string().optional(),
+    image: z.string().optional(),
+    faqs: z.array(z.object({
+      question: z.string(),
+      answer: z.string(),
+    })).optional(),
   }),
 });
 

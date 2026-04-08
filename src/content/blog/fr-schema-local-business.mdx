@@ -1,11 +1,21 @@
 ---
-title: "Schema markup LocalBusiness : guide d'implémentation"
-description: "Le schema LocalBusiness aide Google à comprendre votre entreprise et peut déclencher des rich snippets. Voici comment l'implémenter correctement sur votre site."
+title: "Schema LocalBusiness : implémentation complète pour le SEO local"
+description: "Implémentez le schema markup LocalBusiness en JSON-LD pour améliorer votre SEO local. Guide complet avec exemples de code, types spécialisés et erreurs à éviter."
 date: "2026-03-12"
 lang: "fr"
+image: "/images/blog/fr-schema-local-business.webp"
+faqs:
+  - question: "Le schema LocalBusiness est-il obligatoire pour le SEO local ?"
+    answer: "Non, il n'est pas obligatoire, mais il est fortement recommandé. Il aide Google à comprendre avec précision votre activité, votre localisation et vos horaires, ce qui renforce votre pertinence pour les requêtes locales."
+  - question: "Faut-il ajouter le schema LocalBusiness sur chaque page du site ?"
+    answer: "Ajoutez-le sur les pages les plus importantes : page d'accueil, pages de service et pages locales. Pour un site avec plusieurs emplacements, créez un schema distinct par établissement sur la page qui lui est dédiée."
+  - question: "JSON-LD ou Microdata pour le schema LocalBusiness ?"
+    answer: "JSON-LD est le format recommandé par Google. Il s'intègre facilement dans la balise head sans modifier la structure HTML de la page, ce qui le rend plus simple à maintenir et à déboguer."
+  - question: "Puis-je inclure mes avis Google dans le schema aggregateRating ?"
+    answer: "Oui, mais uniquement si les données correspondent à vos avis réels et vérifiables. N'inventez jamais une note ou un nombre d'avis. Google peut pénaliser les données structurées trompeuses et retirer les rich snippets correspondants."
+  - question: "Comment savoir si mon schema LocalBusiness est correctement interprété par Google ?"
+    answer: "Utilisez le Rich Results Test (search.google.com/test/rich-results) pour tester une URL spécifique. Google Search Console signale également les erreurs et avertissements dans la section 'Améliorations' > 'Résultats enrichis'."
 ---
-
-## Schema markup LocalBusiness : guide d'implémentation
 
 Le schema markup est l'un des leviers SEO les plus techniques, mais aussi l'un des plus accessibles dès lors qu'on comprend sa logique. Pour les entreprises locales, le schema `LocalBusiness` permet d'indiquer à Google — de façon structurée et non ambiguë — les informations essentielles de votre établissement : nom, adresse, téléphone, horaires, secteur d'activité, zone de service.
 

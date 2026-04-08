@@ -11,12 +11,14 @@ interface Props {
   alternates?: { fr?: string; en?: string; es?: string };
   article?: { date?: string; author?: string };
   jsonLd?: Record<string, unknown>;
+  additionalJsonLds?: Record<string, unknown>[];
+  ogImage?: string;
 }
 
-const { title, description, lang = 'fr', canonicalURL, alternates, article, jsonLd } = Astro.props;
+const { title, description, lang = 'fr', canonicalURL, alternates, article, jsonLd, additionalJsonLds, ogImage } = Astro.props;
 const canonical = canonicalURL ?? Astro.url.href;
 const siteUrl = 'https://visibilite-locale.online';
-const ogImageUrl = `${siteUrl}/og-default.png`;
+const ogImageUrl = ogImage ? `${siteUrl}${ogImage}` : `${siteUrl}/og-default.png`;
 
 // Build hreflang URLs from alternates or auto-detect from current path
 const currentPath = Astro.url.pathname;
@@ -113,6 +115,9 @@ const breadcrumbJsonLd = {
     <!-- Structured Data -->
     <script type="application/ld+json" set:html={JSON.stringify(defaultJsonLd)} />
     <script type="application/ld+json" set:html={JSON.stringify(breadcrumbJsonLd)} />
+    {additionalJsonLds?.map(ld => (
+      <script type="application/ld+json" set:html={JSON.stringify(ld)} />
+    ))}
   </head>
   <body>
     <Header lang={lang} />

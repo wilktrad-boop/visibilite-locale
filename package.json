@@ -6,7 +6,11 @@
     "dev": "astro dev",
     "build": "astro build",
     "preview": "astro preview",
-    "astro": "astro"
+    "astro": "astro",
+    "generate:images": "node --env-file=.env.local scripts/generate-images.mjs",
+    "generate:images:force": "node --env-file=.env.local scripts/generate-images.mjs --force",
+    "enrich:articles": "node --env-file=.env.local scripts/enrich-articles.mjs",
+    "enrich:articles:force": "node --env-file=.env.local scripts/enrich-articles.mjs --force"
   },
   "dependencies": {
     "@astrojs/cloudflare": "^12.6.12",
@@ -16,5 +20,8 @@
     "astro": "^5.17.1",
     "sharp": "^0.34.5",
     "tailwindcss": "^4.2.1"
+  },
+  "devDependencies": {
+    "js-yaml": "^4.1.1"
   }
 }

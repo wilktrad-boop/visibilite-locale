@@ -28,7 +28,20 @@ const colors = ['bg-blue-500','bg-indigo-500','bg-violet-500','bg-emerald-500','
       <ul class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
         {posts.map((post, i) => (
           <li class="group flex flex-col rounded-2xl border border-gray-100 bg-white shadow-sm hover:shadow-lg transition-all duration-300 overflow-hidden">
-            <div class={`h-2 w-full ${colors[i % colors.length]}`}></div>
+            {post.data.image ? (
+              <a href={`/en/blog/${post.slug}/`}>
+                <img
+                  src={post.data.image}
+                  alt={post.data.title}
+                  class="w-full h-36 object-cover"
+                  loading="lazy"
+                  width="600"
+                  height="225"
+                />
+              </a>
+            ) : (
+              <div class={`h-2 w-full ${colors[i % colors.length]}`}></div>
+            )}
             <a href={`/en/blog/${post.slug}/`} class="flex flex-col flex-1 p-6">
               <p class="text-xs text-gray-400 mb-3">{post.data.date}</p>
               <h2 class="text-base font-bold text-gray-900 group-hover:text-blue-600 transition-colors leading-snug flex-1">{post.data.title}</h2>

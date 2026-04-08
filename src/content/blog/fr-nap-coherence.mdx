@@ -1,8 +1,20 @@
 ---
-title: "NAP : pourquoi la cohérence nom/adresse/téléphone est cruciale"
-description: "La cohérence NAP est un pilier du SEO local souvent sous-estimé. Voici pourquoi chaque incohérence peut nuire à votre visibilité sur Google et comment y remédier."
+title: "Cohérence NAP : pourquoi nom, adresse et téléphone sont cruciaux en SEO local"
+description: "La cohérence NAP est le fondement du SEO local. Découvrez comment auditer vos informations, corriger les incohérences et améliorer votre visibilité dans le pack Google."
 date: "2026-02-22"
 lang: "fr"
+image: "/images/blog/fr-nap-coherence.webp"
+faqs:
+  - question: "Qu'est-ce que le NAP en SEO local ?"
+    answer: "NAP est l'acronyme de Name, Address, Phone (Nom, Adresse, Téléphone). Ce sont les trois informations de base d'une entreprise qui doivent être identiques sur toutes les plateformes en ligne pour que Google puisse vérifier son existence et sa localisation."
+  - question: "Une simple différence de ponctuation dans l'adresse peut-elle nuire au SEO ?"
+    answer: "Oui. Les outils automatisés qui analysent les citations traitent '15 rue du Commerce' et '15, Rue du Commerce' comme deux adresses différentes. À grande échelle, ces micro-incohérences créent du bruit et réduisent la confiance de Google envers votre fiche."
+  - question: "Combien de temps faut-il pour corriger toutes ses citations NAP ?"
+    answer: "Une correction manuelle des 15-20 annuaires les plus importants prend environ 2 à 4 heures. Avec un outil comme BrightLocal ou Moz Local, le processus peut être automatisé en moins d'une heure, mais l'abonnement est payant."
+  - question: "Faut-il mettre son numéro de téléphone au format international (+33) ?"
+    answer: "Pour le SEO local en France, le format national (01 23 45 67 89) est généralement suffisant. Cependant, si vous ciblez des clients étrangers ou si votre fiche GBP est configurée en multi-pays, ajoutez le préfixe international +33 de façon cohérente sur toutes les plateformes."
+  - question: "Un déménagement récent peut-il expliquer une baisse de classement ?"
+    answer: "Oui, c'est l'une des causes les plus fréquentes de baisse soudaine en SEO local. Si vous avez déménagé sans mettre à jour toutes vos citations, Google détecte une incohérence entre l'ancienne et la nouvelle adresse. Mettez à jour GBP, votre site web et les principaux annuaires en priorité."
 ---
 
 Dans le monde du SEO local, l'acronyme NAP revient sans cesse dans les discussions entre professionnels. NAP signifie Name, Address, Phone — soit le nom de votre entreprise, son adresse et son numéro de téléphone. Ces trois informations semblent anodines, pourtant leur cohérence à travers le web est un facteur de confiance majeur pour Google.
@@ -72,6 +84,28 @@ Assurez-vous que votre adresse et votre téléphone affichés sur votre site cor
 ## Combien de temps faut-il pour voir les effets ?
 
 La correction NAP n'est pas une action à effet immédiat. Il faut généralement plusieurs semaines, voire quelques mois, pour que Google réévalue la cohérence de vos informations et que cela se répercute sur votre positionnement. Soyez patient et méthodique.
+
+## NAP et schema markup : doubler le signal de confiance
+
+Au-delà des annuaires, vous pouvez renforcer votre NAP directement dans le code de votre site via le balisage **Schema.org LocalBusiness** en JSON-LD. Ce balisage est lu directement par Google sans passer par des sources tierces :
+
+```json
+{
+  "@context": "https://schema.org",
+  "@type": "LocalBusiness",
+  "name": "Boulangerie Dupont",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "15 rue du Commerce",
+    "addressLocality": "Lyon",
+    "postalCode": "69001",
+    "addressCountry": "FR"
+  },
+  "telephone": "+33 4 72 00 00 00"
+}
+```
+
+Ce balisage doit être **identique** au NAP de votre fiche Google Business Profile. C'est le moyen le plus direct d'indiquer à Google quelles sont vos informations officielles, en faisant de votre site web la source de vérité.
 
 ## En résumé
 

@@ -6,22 +6,37 @@ interface Props {
   date: string;
   lang?: string;
   readmore?: string;
+  image?: string;
 }
 
-const { title, excerpt, slug, date, lang = 'fr', readmore = 'Lire la suite →' } = Astro.props;
+const { title, excerpt, slug, date, lang = 'fr', readmore = 'Lire la suite →', image } = Astro.props;
 const base = lang === 'fr' ? '' : `/${lang}`;
 const formattedDate = new Date(date).toLocaleDateString(lang === 'en' ? 'en-GB' : lang === 'es' ? 'es-ES' : 'fr-FR', {
   day: 'numeric', month: 'long', year: 'numeric'
 });
 ---
 
-<article class="group rounded-xl border border-gray-200 bg-white p-6 shadow-sm transition-all hover:shadow-md hover:-translate-y-0.5">
-  <time class="text-xs font-medium uppercase tracking-wide text-blue-500">{formattedDate}</time>
-  <h2 class="mt-2 mb-3 text-lg font-bold text-gray-900 group-hover:text-blue-600 leading-snug">
-    <a href={`${base}/blog/${slug}`}>{title}</a>
-  </h2>
-  <p class="text-sm text-gray-600 line-clamp-2 mb-4 leading-relaxed">{excerpt}</p>
-  <a href={`${base}/blog/${slug}`} class="text-sm font-semibold text-blue-600 hover:text-blue-700">
-    {readmore}
-  </a>
+<article class="group rounded-xl border border-gray-200 bg-white shadow-sm transition-all hover:shadow-md hover:-translate-y-0.5 overflow-hidden">
+  {image && (
+    <a href={`${base}/blog/${slug}`}>
+      <img
+        src={image}
+        alt={title}
+        class="w-full h-40 object-cover"
+        loading="lazy"
+        width="600"
+        height="315"
+      />
+    </a>
+  )}
+  <div class="p-6">
+    <time class="text-xs font-medium uppercase tracking-wide text-blue-500">{formattedDate}</time>
+    <h2 class="mt-2 mb-3 text-lg font-bold text-gray-900 group-hover:text-blue-600 leading-snug">
+      <a href={`${base}/blog/${slug}`}>{title}</a>
+    </h2>
+    <p class="text-sm text-gray-600 line-clamp-2 mb-4 leading-relaxed">{excerpt}</p>
+    <a href={`${base}/blog/${slug}`} class="text-sm font-semibold text-blue-600 hover:text-blue-700">
+      {readmore}
+    </a>
+  </div>
 </article>
