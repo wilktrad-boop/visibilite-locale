@@ -118,6 +118,9 @@ const breadcrumbJsonLd = {
     {additionalJsonLds?.map(ld => (
       <script type="application/ld+json" set:html={JSON.stringify(ld)} />
     ))}
+
+    <!-- Analytics -->
+    <script src="https://app.rybbit.io/api/script.js" data-site-id="ecb4a68f9e63" defer></script>
   </head>
   <body>
     <Header lang={lang} />
