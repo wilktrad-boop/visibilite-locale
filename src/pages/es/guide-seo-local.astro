@@ -1,0 +1,108 @@
+---
+import Layout from '../../layouts/Layout.astro';
+
+const modules = [
+  {
+    title: "Entender el SEO local",
+    pages: [
+      { href: "/es/guide-seo-local/algoritmo-local", label: "El algoritmo local de Google", desc: "Relevancia, distancia, notoriedad — los 3 factores de posicionamiento" },
+      { href: "/es/guide-seo-local/paquete-local", label: "El paquete local", desc: "Cómo aparecer en el 3-pack de Google" },
+    ]
+  },
+  {
+    title: "Google Business Profile",
+    pages: [
+      { href: "/es/guide-seo-local/google-business-profile", label: "Optimizar tu ficha GBP", desc: "Guía completa de creación y optimización" },
+    ]
+  },
+  {
+    title: "Señales on-site",
+    pages: [
+      { href: "/es/guide-seo-local/palabras-clave-locales", label: "Palabras clave locales", desc: "Método y herramientas para encontrar las palabras clave correctas" },
+      { href: "/es/guide-seo-local/paginas-servicio-ciudad", label: "Páginas servicio + ciudad", desc: "Crear landing pages locales de alto rendimiento" },
+      { href: "/es/guide-seo-local/schema-local", label: "Datos estructurados LocalBusiness", desc: "Schema.org JSON-LD para el SEO local" },
+      { href: "/es/guide-seo-local/movil-velocidad", label: "Móvil y velocidad", desc: "Core Web Vitals e indexación mobile-first" },
+    ]
+  },
+  {
+    title: "Citas & NAP",
+    pages: [
+      { href: "/es/guide-seo-local/citas-locales", label: "Citas locales", desc: "Coherencia NAP y señales de confianza" },
+      { href: "/es/guide-seo-local/directorios-locales", label: "Directorios locales prioritarios", desc: "Los directorios a trabajar en España" },
+    ]
+  },
+  {
+    title: "Reseñas de clientes",
+    pages: [
+      { href: "/es/guide-seo-local/resenas-clientes", label: "Estrategia de reseñas", desc: "Recopilar y gestionar tus reseñas de Google" },
+      { href: "/es/guide-seo-local/responder-resenas", label: "Responder a las reseñas", desc: "Estrategia y plantillas de respuesta" },
+    ]
+  },
+  {
+    title: "Backlinks locales",
+    pages: [
+      { href: "/es/guide-seo-local/backlinks-locales", label: "Backlinks locales", desc: "Conseguir enlaces desde fuentes locales" },
+    ]
+  },
+  {
+    title: "SEO local por sector",
+    pages: [
+      { href: "/es/guide-seo-local/restaurantes", label: "Restaurantes", desc: "GBP, fotos, menús y plataformas de reseñas" },
+      { href: "/es/guide-seo-local/artesanos", label: "Artesanos y oficios", desc: "Zona de actuación, certificaciones y fotos de trabajos" },
+      { href: "/es/guide-seo-local/salud", label: "Profesionales de la salud", desc: "YMYL, E-E-A-T y gestión de reseñas de pacientes" },
+      { href: "/es/guide-seo-local/profesiones-liberales", label: "Profesiones liberales", desc: "Abogados, notarios, asesores fiscales" },
+      { href: "/es/guide-seo-local/comercios", label: "Comercios de proximidad", desc: "Atraer clientes en tu zona de influencia" },
+    ]
+  },
+  {
+    title: "Contenido local",
+    pages: [
+      { href: "/es/guide-seo-local/contenido-local", label: "Contenido geolocalizado", desc: "Crear contenido relevante para tu zona" },
+    ]
+  },
+  {
+    title: "Medir y progresar",
+    pages: [
+      { href: "/es/guide-seo-local/herramientas", label: "Herramientas SEO local", desc: "BrightLocal, Whitespark, GSC y herramientas gratuitas" },
+      { href: "/es/guide-seo-local/medir-resultados", label: "Medir los resultados", desc: "KPIs, paneles de control e informes mensuales" },
+    ]
+  },
+];
+---
+
+<Layout
+  title="Guía completa de SEO local 2025 | visibilite-locale.online"
+  description="La guía de SEO local más completa: algoritmo de Google, paquete local, GBP, citas, reseñas, contenido, backlinks, herramientas y estrategias por sector. Todo para dominar las búsquedas locales."
+  lang="es"
+>
+  <section class="border-b border-gray-200 bg-gray-50 py-14">
+    <div class="mx-auto max-w-3xl px-4">
+      <nav class="mb-4 text-sm text-gray-500">
+        <a href="/es/" class="hover:text-blue-600">Inicio</a> &rsaquo;
+        <span class="text-gray-900">Guía SEO local</span>
+      </nav>
+      <h1 class="mb-4 text-4xl font-bold text-gray-900">Guía completa de SEO local</h1>
+      <p class="text-lg text-gray-600 leading-relaxed">
+        Todo lo que necesitas para mejorar la visibilidad local de tu empresa en Google — desde la creación de tu ficha GBP hasta la medición de tus resultados.
+      </p>
+    </div>
+  </section>
+
+  <section class="py-14">
+    <div class="mx-auto max-w-3xl px-4">
+      {modules.map(mod => (
+        <div class="mb-10">
+          <h2 class="text-xl font-bold text-gray-900 mb-4 pb-2 border-b border-gray-200">{mod.title}</h2>
+          <div class="grid gap-3 sm:grid-cols-2">
+            {mod.pages.map(p => (
+              <a href={p.href} class="block rounded-xl border border-gray-200 bg-white p-4 hover:border-blue-400 hover:shadow-sm transition-all">
+                <span class="font-semibold text-gray-900 text-sm">{p.label}</span>
+                <span class="block text-xs text-gray-500 mt-1">{p.desc}</span>
+              </a>
+            ))}
+          </div>
+        </div>
+      ))}
+    </div>
+  </section>
+</Layout>

@@ -1,39 +1,104 @@
 ---
 import Layout from '../layouts/Layout.astro';
+
+const modules = [
+  {
+    title: "Comprendre le SEO local",
+    pages: [
+      { href: "/guide-seo-local/algorithme-local", label: "L'algorithme local de Google", desc: "Pertinence, distance, notoriété — les 3 facteurs de classement" },
+      { href: "/guide-seo-local/pack-local", label: "Le pack local", desc: "Comment apparaître dans le 3-pack Google" },
+    ]
+  },
+  {
+    title: "Google Business Profile",
+    pages: [
+      { href: "/guide-seo-local/google-business-profile", label: "Optimiser votre fiche GBP", desc: "Guide complet de création et d'optimisation" },
+    ]
+  },
+  {
+    title: "Signaux on-site",
+    pages: [
+      { href: "/guide-seo-local/mots-cles-locaux", label: "Mots-clés locaux", desc: "Méthode et outils pour trouver les bons mots-clés" },
+      { href: "/guide-seo-local/pages-service-ville", label: "Pages service + ville", desc: "Créer des landing pages locales performantes" },
+      { href: "/guide-seo-local/schema-local", label: "Données structurées LocalBusiness", desc: "Schema.org JSON-LD pour le SEO local" },
+      { href: "/guide-seo-local/mobile-vitesse", label: "Mobile et vitesse", desc: "Core Web Vitals et mobile-first indexing" },
+    ]
+  },
+  {
+    title: "Citations & NAP",
+    pages: [
+      { href: "/guide-seo-local/citations-locales", label: "Citations locales", desc: "Cohérence NAP et signaux de confiance" },
+      { href: "/guide-seo-local/annuaires-locaux", label: "Annuaires locaux prioritaires", desc: "Les annuaires à cibler en France" },
+    ]
+  },
+  {
+    title: "Avis clients",
+    pages: [
+      { href: "/guide-seo-local/avis-clients", label: "Stratégie d'avis clients", desc: "Collecter et gérer vos avis Google" },
+      { href: "/guide-seo-local/repondre-avis", label: "Répondre aux avis", desc: "Stratégie et templates de réponse" },
+    ]
+  },
+  {
+    title: "Backlinks locaux",
+    pages: [
+      { href: "/guide-seo-local/backlinks-locaux", label: "Backlinks locaux", desc: "Obtenir des liens depuis des sources locales" },
+    ]
+  },
+  {
+    title: "SEO local par secteur",
+    pages: [
+      { href: "/guide-seo-local/restaurants", label: "Restaurants", desc: "GBP, photos, menus et plateformes d'avis" },
+      { href: "/guide-seo-local/artisans", label: "Artisans & BTP", desc: "Zone d'intervention, labels et photos de chantiers" },
+      { href: "/guide-seo-local/sante", label: "Professionnels de santé", desc: "YMYL, E-E-A-T et gestion des avis patients" },
+      { href: "/guide-seo-local/professions-liberales", label: "Professions libérales", desc: "Avocats, notaires, experts-comptables" },
+      { href: "/guide-seo-local/commerces", label: "Commerces de proximité", desc: "Attirer des clients dans votre zone de chalandise" },
+    ]
+  },
+  {
+    title: "Contenu local",
+    pages: [
+      { href: "/guide-seo-local/contenu-local", label: "Contenu géolocalisé", desc: "Créer du contenu pertinent pour votre zone" },
+    ]
+  },
+  {
+    title: "Mesurer & progresser",
+    pages: [
+      { href: "/guide-seo-local/outils", label: "Outils SEO local", desc: "BrightLocal, Whitespark, GSC et outils gratuits" },
+      { href: "/guide-seo-local/mesurer-resultats", label: "Mesurer ses résultats", desc: "KPIs, tableaux de bord et reporting mensuel" },
+    ]
+  },
+];
 ---
 
 <Layout
-  title="Guide complet du SEO local | visibilite-locale.online"
-  description="Tout ce que vous devez savoir sur le référencement local : Google Business Profile, citations, avis, contenu géolocalisé et backlinks locaux."
+  title="Guide complet du SEO local 2025 | visibilite-locale.online"
+  description="Le guide SEO local le plus complet : algorithme Google, pack local, GBP, citations, avis, contenu, backlinks, outils et stratégies par secteur. Tout pour dominer les recherches locales."
   lang="fr"
 >
   <section class="border-b border-gray-200 bg-gray-50 py-14">
     <div class="mx-auto max-w-3xl px-4">
-      <h1 class="mb-4 text-4xl font-bold text-gray-900">Guide du SEO local</h1>
+      <h1 class="mb-4 text-4xl font-bold text-gray-900">Guide complet du SEO local</h1>
       <p class="text-lg text-gray-600 leading-relaxed">
-        Tout ce que vous devez savoir pour améliorer la visibilité locale de votre entreprise sur Google.
+        Tout ce que vous devez savoir pour améliorer la visibilité locale de votre entreprise sur Google — de la création de votre fiche GBP à la mesure de vos résultats.
       </p>
     </div>
   </section>
 
   <section class="py-14">
-    <div class="mx-auto max-w-3xl px-4 prose">
-      <h2>Qu'est-ce que le SEO local ?</h2>
-      <p>
-        Le SEO local (ou référencement local) désigne l'ensemble des techniques d'optimisation visant à améliorer la visibilité d'une entreprise dans les résultats de recherche géolocalisés. Contrairement au SEO classique, il cible les internautes qui recherchent un produit ou service à proximité.
-      </p>
-      <h2>Pourquoi le SEO local est essentiel</h2>
-      <p>
-        Plus de 46 % des recherches Google ont une intention locale. Apparaître dans le "pack local" (les 3 établissements affichés sur la carte) génère un trafic qualifié et des appels directs.
-      </p>
-      <h2>Les piliers du SEO local</h2>
-      <ul>
-        <li>Google Business Profile optimisé</li>
-        <li>Cohérence des citations (NAP)</li>
-        <li>Avis clients authentiques</li>
-        <li>Contenu géolocalisé sur votre site</li>
-        <li>Backlinks depuis des sites locaux</li>
-      </ul>
+    <div class="mx-auto max-w-3xl px-4">
+      {modules.map(mod => (
+        <div class="mb-10">
+          <h2 class="text-xl font-bold text-gray-900 mb-4 pb-2 border-b border-gray-200">{mod.title}</h2>
+          <div class="grid gap-3 sm:grid-cols-2">
+            {mod.pages.map(p => (
+              <a href={p.href} class="block rounded-xl border border-gray-200 bg-white p-4 hover:border-blue-400 hover:shadow-sm transition-all">
+                <span class="font-semibold text-gray-900 text-sm">{p.label}</span>
+                <span class="block text-xs text-gray-500 mt-1">{p.desc}</span>
+              </a>
+            ))}
+          </div>
+        </div>
+      ))}
     </div>
   </section>
 </Layout>

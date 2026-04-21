@@ -1,0 +1,77 @@
+---
+import Layout from '../../layouts/Layout.astro';
+---
+
+<Layout
+  title="SEO local pour les professionnels de santé | Guide SEO local"
+  description="SEO local pour médecins, dentistes, kinésithérapeutes et paramédicaux. Knowledge Panel médical, YMYL, Doctolib, données structurées et gestion des avis patients."
+  lang="fr"
+  ogImage="/images/guide/fr-sante.webp"
+>
+  <section class="border-b border-gray-200 bg-gray-50 py-14">
+    <div class="mx-auto max-w-3xl px-4">
+      <nav class="mb-4 text-sm text-gray-500">
+        <a href="/" class="hover:text-blue-600">Accueil</a> &rsaquo;
+        <a href="/guide-seo-local" class="hover:text-blue-600">Guide SEO local</a> &rsaquo;
+        <span class="text-gray-900">Professionnels de santé</span>
+      </nav>
+      <h1 class="mb-4 text-4xl font-bold text-gray-900">SEO local pour les professionnels de santé</h1>
+      <p class="text-lg text-gray-600 leading-relaxed">La santé est un secteur YMYL (Your Money or Your Life) : Google y applique des critères E-E-A-T particulièrement stricts. Voici les spécificités à maîtriser pour ranker localement en tant que professionnel de santé.</p>
+    </div>
+  </section>
+
+  <div class="mx-auto max-w-3xl px-4 pt-8">
+    <img src="/images/guide/fr-sante.webp" alt="" class="w-full rounded-xl object-cover shadow-sm" loading="eager" width="1200" height="400" style="max-height:320px" onerror="this.style.display='none'" />
+  </div>
+
+  <section class="py-14">
+    <div class="mx-auto max-w-3xl px-4 prose">
+      
+      <h2>YMYL et E-E-A-T : les exigences spécifiques à la santé</h2>
+      <p>Google classe la santé parmi les contenus YMYL (Your Money or Your Life) — des thèmes où une mauvaise information peut avoir des conséquences graves. Pour ces contenus, l'algorithme accorde une importance accrue aux signaux E-E-A-T :</p>
+      <ul>
+        <li><strong>Experience</strong> : preuves d'expérience pratique (cas cliniques, témoignages patients)</li>
+        <li><strong>Expertise</strong> : diplômes, spécialités, publications, affiliations professionnelles</li>
+        <li><strong>Authoritativeness</strong> : mentions dans la presse médicale, citations par des confrères</li>
+        <li><strong>Trustworthiness</strong> : avis authentiques, informations de contact claires, politique de confidentialité</li>
+      </ul>
+
+      <h2>Google Business Profile pour les professionnels de santé</h2>
+      <ul>
+        <li>Utilisez le type exact (Dentist, Physiotherapist, GeneralPractitioner...)</li>
+        <li>Indiquez vos spécialités dans la description</li>
+        <li>Activez les attributs accessibilité (PMR, parking)</li>
+        <li>Intégrez un bouton de prise de RDV via Doctolib ou Maiia</li>
+        <li>Ne publiez jamais d'informations médicales spécifiques sur des patients — même anonymisées</li>
+      </ul>
+
+      <h2>Doctolib et les plateformes médicales</h2>
+      <p>Doctolib est devenu un acteur SEO incontournable en santé : les profils Doctolib apparaissent souvent en première page sur des requêtes comme « dermatologue Paris ». Avoir un profil complet et à jour sur Doctolib (et Maiia, Keldoc selon votre spécialité) est complémentaire de votre site propre.</p>
+
+      <h2>Gestion des avis patients</h2>
+      <p>Les avis Google pour les professionnels de santé sont particulièrement sensibles :</p>
+      <ul>
+        <li>Répondez à tous les avis (positifs et négatifs) sans jamais confirmer ou infirmer la relation patient</li>
+        <li>Ne mentionnez aucun détail médical dans vos réponses (secret médical)</li>
+        <li>En cas d'avis clairement diffamatoire ou violant le secret médical, signalez-le à Google</li>
+        <li>Orientez les insatisfactions vers votre secrétariat ou une adresse email dédiée</li>
+      </ul>
+
+      <h2>Contenu de site pour professionnels de santé</h2>
+      <ul>
+        <li>Page par spécialité / pathologie traitée (avec sources médicales référencées)</li>
+        <li>Page « À propos » avec parcours, diplômes et affiliations clairement mentionnés</li>
+        <li>FAQ sur les consultations, remboursements, dépassements d'honoraires</li>
+        <li>Schema.org : types <code>MedicalBusiness</code>, <code>Dentist</code>, <code>Physician</code> avec <code>medicalSpecialty</code></li>
+      </ul>
+      <div class="mt-8 rounded-xl bg-blue-50 border border-blue-200 p-6">
+        <p class="font-semibold text-blue-900">Articles associés</p>
+        <ul class="mt-2 space-y-1 text-blue-700">
+          <li><a href="/guide-seo-local/schema-local" class="hover:underline">Données structurées LocalBusiness</a></li>
+          <li><a href="/guide-seo-local/avis-clients" class="hover:underline">Gestion des avis clients</a></li>
+          <li><a href="/blog/fr-donnees-structurees-avancees/" class="hover:underline">Données structurées avancées</a></li>
+        </ul>
+      </div>
+    </div>
+  </section>
+</Layout>

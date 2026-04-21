@@ -1,0 +1,71 @@
+---
+import Layout from '../../../layouts/Layout.astro';
+---
+
+<Layout
+  title="Mobile and Page Speed for Local SEO | Local SEO Guide"
+  description="Mobile-first indexing, Core Web Vitals and page speed: the technical foundations of local SEO. How to optimise for mobile searches and improve your local rankings."
+  lang="en"
+  ogImage="/images/guide/en-mobile-speed.webp"
+>
+  <section class="border-b border-gray-200 bg-gray-50 py-14">
+    <div class="mx-auto max-w-3xl px-4">
+      <nav class="mb-4 text-sm text-gray-500">
+        <a href="/en/" class="hover:text-blue-600">Home</a> &rsaquo;
+        <a href="/en/guide-seo-local" class="hover:text-blue-600">Local SEO Guide</a> &rsaquo;
+        <span class="text-gray-900">Mobile and Speed</span>
+      </nav>
+      <h1 class="mb-4 text-4xl font-bold text-gray-900">Mobile and Speed: Technical Foundations of Local SEO</h1>
+      <p class="text-lg text-gray-600 leading-relaxed">Over 60% of local searches happen on mobile. A slow or poorly adapted site loses customers before they've even read your content.</p>
+    </div>
+  </section>
+
+  <div class="mx-auto max-w-3xl px-4 pt-8">
+    <img src="/images/guide/en-mobile-speed.webp" alt="" class="w-full rounded-xl object-cover shadow-sm" loading="eager" width="1200" height="400" style="max-height:320px" onerror="this.style.display='none'" />
+  </div>
+
+  <section class="py-14">
+    <div class="mx-auto max-w-3xl px-4 prose">
+      
+      <h2>Mobile-First Indexing: What It Changes</h2>
+      <p>Since 2021, Google primarily indexes the mobile version of your site. This means mobile performance determines your ranking — including on desktop. A responsive, fast mobile site is no longer optional: it's the baseline.</p>
+
+      <h2>Core Web Vitals: The 3 Metrics to Monitor</h2>
+      <ul>
+        <li><strong>LCP (Largest Contentful Paint)</strong>: loading time of the main visible element. Target: under 2.5 seconds.</li>
+        <li><strong>INP (Interaction to Next Paint)</strong>: responsiveness to user interactions. Target: under 200ms.</li>
+        <li><strong>CLS (Cumulative Layout Shift)</strong>: visual stability (elements jumping during load). Target: under 0.1.</li>
+      </ul>
+
+      <h2>Why This Is Critical for Local SEO</h2>
+      <p>Local searches often have immediate intent: the user is looking for a phone number, address or opening hours. If your page takes 5 seconds to load on mobile, they go back to Google and click the next result. High bounce rates send a negative signal that can hurt your rankings.</p>
+
+      <h2>Priority Technical Optimisations</h2>
+      <ul>
+        <li><strong>Images</strong>: use WebP format, set width/height attributes, lazy load off-screen images</li>
+        <li><strong>Hosting</strong>: choose a host with servers near your target audience</li>
+        <li><strong>Caching</strong>: implement browser and server-side caching</li>
+        <li><strong>CSS/JS</strong>: minify files, defer non-critical JavaScript</li>
+        <li><strong>Fonts</strong>: preload above-the-fold fonts, use font-display: swap</li>
+      </ul>
+
+      <h2>Diagnostic Tools</h2>
+      <ul>
+        <li><strong>PageSpeed Insights</strong>: pagespeed.web.dev — analyses LCP/INP/CLS with detailed suggestions</li>
+        <li><strong>Google Search Console</strong>: "Page Experience" report for failing URLs</li>
+        <li><strong>WebPageTest.org</strong>: advanced testing from different locations and connections</li>
+      </ul>
+
+      <h2>Mobile UX for Local Searches</h2>
+      <p>Beyond speed, mobile ergonomics matter: clickable phone number at the top of the page, Google Maps directions button, simple contact form (3 fields maximum). A mobile user searching for an emergency plumber should be able to call within 2 seconds of reaching your page.</p>
+      <div class="mt-8 rounded-xl bg-blue-50 border border-blue-200 p-6">
+        <p class="font-semibold text-blue-900">Related articles</p>
+        <ul class="mt-2 space-y-1 text-blue-700">
+          <li><a href="/en/blog/en-mobile-recherche-locale/" class="hover:underline">Mobile and local search: stats and optimisations</a></li>
+          <li><a href="/en/blog/en-core-web-vitals-local/" class="hover:underline">Core Web Vitals and local SEO</a></li>
+          <li><a href="/en/guide-seo-local/local-schema" class="hover:underline">LocalBusiness structured data</a></li>
+        </ul>
+      </div>
+    </div>
+  </section>
+</Layout>
